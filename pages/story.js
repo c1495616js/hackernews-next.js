@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import Error from 'next/error';
 import Layout from '../components/Layout';
-
+import CommentList from '../components/CommentList';
 class Story extends React.Component {
   static async getInitialProps({ req, res, query }) {
     let story;
@@ -23,7 +23,7 @@ class Story extends React.Component {
       return <Error statusCode={503} />
     }
 
-    return <Layout title={story.title}>
+    return <Layout title={story.title} backButton>
       <main>
         <h1 className="story-title">
           <a href={story.url}>{story.title}</a>
@@ -33,6 +33,13 @@ class Story extends React.Component {
           <strong>{story.comments_count} comments</strong>
           <strong>{story.time_ago}</strong>
         </div>
+
+        {story.comments.length > 0 ? (
+          <CommentList comments={story.comments} />
+        ) : (
+          <div>No comments for this story</div>
+        )}
+
       </main>
 
       <style jsx>{`
