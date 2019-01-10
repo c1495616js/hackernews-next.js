@@ -35,9 +35,21 @@ class Index extends React.Component {
 
       <footer>
         <Link href={`/?page=${page + 1}`}>
-          <a>Click Here</a>
+          <a>Next Page ({page + 1})</a>
         </Link>
       </footer>
+
+      <style jsx>{`
+        footer {
+          padding: 1em;
+        }
+        footer a {
+          font-weight: bold;
+          color: black;
+          text-decoration: none;
+        }
+      `}</style>
+
       </Layout>
     )
   }
